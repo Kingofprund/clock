@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  
+  <button class="container ciava">
+    <h1>Faster</h1>
+    
+  </button>
+
+    <div class="clock">
+      <div class="circle">
+        <p>III</p>
+      </div>
+      <div class="circle">
+        <p>IV</p>
+      </div>
+      <div class="circle">
+        <p>V</p>
+      </div>
+      <div class="circle">
+        <p>VI</p>
+      </div>
+      <div class="circle">
+        <p>VII</p>
+      </div>
+      <div class="circle">
+        <p>VIII</p>
+      </div>
+      <div class="circle">
+        <p>XI</p>
+      </div>
+      <div class="circle">
+        <p>X</p>
+      </div>
+      <div class="circle">
+        <p>XI</p>
+      </div>
+      <div class="circle">
+        <p>XII</p>
+      </div>
+      <div class="circle">
+        <p>I</p>
+      </div>
+      <div class="circle">
+        <p>II</p>
+      </div>
+        
+      
+      <div class="clock-face">
+        <div class="dot"></div>
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+    </div>
+    </div>
+    <button class="container altciava">
+      <h1>Slower</h1>
+      
+    </button>
+
+  <script>
+   const secondHand = document.querySelector(".second-hand");
+      const minHand = document.querySelector(".min-hand");
+      const hourHand = document.querySelector(".hour-hand");
+      const timex2 = document.querySelector(".ciava");
+      const time_x2 = document.querySelector(".altciava");
+      let mutation = 1; // This is the time dilation value and starts at 1
+
+      // The onclick updates the mutation value, stops the current interval, and starts a new interval based on the mutation value.
+      timex2.onclick = function () {
+        mutation = mutation * 2;
+        // We need to restart the setInterval because this is how often the screen is repainted.
+        clearInterval(update);
+        update = setInterval(updateDate, 1000 / mutation);
+      };
+      time_x2.onclick = function (){
+        mutation = mutation / 2;
+        clearInterval(update);
+        update = setInterval(updateDate, 1000 / mutation);
+      }
+
+
+      // This code only gets our current system time to initally paint the clock
+      const now = new Date();
+
+      let seconds = now.getSeconds();
+      let secondsDegrees = (seconds / 60) * 360 + 90;
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+      let mins = now.getMinutes();
+      let minsDegrees = (mins / 60) * 360 + 90;
+      minHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+      let hours = now.getHours();
+      let hoursDegrees = (hours / 12) * 360 + 90;
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+      // This code will update the clock but is not synced to the Date object so we are able to change the variables
+      function updateDate() {
+        console.log(`${hours}:${mins}:${seconds}`); // Shows calculated time in console
+        seconds = (seconds + 1) % 60;
+        if (seconds == 0) {
+          mins = (mins + 1) % 60;
+          if (mins == 0) {
+            hours = (hours + 1) % 60;
+            hoursDegrees = (hours / 12) * 360 + 90;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+          }
+          minsDegrees = (mins / 60) * 360 + 90;
+          minHand.style.transform = `rotate(${minsDegrees}deg)`;
+        }
+        secondsDegrees = (seconds / 60) * 360 + 90;
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      }
+
+      update = setInterval(updateDate, 1000 * mutation); // 'update' is the ID of the setInterval
+  </script>
+</body>
+</html>

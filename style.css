@@ -1,0 +1,150 @@
+html {
+    background-color: rgb(100, 104, 100);
+    background-size: cover;
+    font-family: 'helvetica neue';
+    /* text-align: center; */
+    font-size: 10px;
+  }
+
+  body {
+    margin: 0;
+    font-size: 2rem;
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+  }
+
+  .clock {
+    width: 30rem;
+    height: 30rem;
+    background-color: lightsteelblue;
+    border: 20px solid white;
+    border-radius: 50%;
+    margin: 50px auto;
+    position: relative;
+    padding: 2rem;
+    box-shadow:
+      0 0 0 4px rgba(0,0,0,0.1),
+      inset 0 0 0 3px #EFEFEF,
+      inset 0 0 10px black,
+      0 0 10px rgba(0,0,0,0.2);
+  }
+  .circle{
+    --size:2em;
+    --offset:7.3em;
+    width:var(--size);
+    /* background-color: aquamarine; */
+    position:absolute;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    top:calc(14em / 2);
+    left:calc(15em / 2);
+    text-align: center;
+    transform: translate(
+        calc(cos(var(--degrees)) * var(--offset)),
+        calc(sin(var(--degrees)) * var(--offset))
+
+    );
+  }
+  .circle:nth-of-type(1){
+    --degrees:0deg;
+  }
+  .circle:nth-of-type(2){
+    --degrees:30deg;
+  }
+  .circle:nth-of-type(3){
+    --degrees:60deg;
+  }
+  .circle:nth-of-type(4){
+    --degrees:90deg;
+  }
+  .circle:nth-of-type(5){
+    --degrees:120deg;
+  }
+  .circle:nth-of-type(6){
+    --degrees:150deg;
+  }
+  .circle:nth-of-type(7){
+    --degrees:180deg;
+  }
+  .circle:nth-of-type(8){
+    --degrees:210deg;
+  }
+  .circle:nth-of-type(9){
+    --degrees:240deg;
+  }
+  .circle:nth-of-type(10){
+    --degrees:270deg;
+  }
+  .circle:nth-of-type(11){
+    --degrees:300deg;
+  }
+  .circle:nth-of-type(12){
+    --degrees:330deg;
+  }
+  .circle p {
+    font-weight: bold;
+    color:rgb(27, 18, 18);
+  }
+
+
+  .clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px); /* account for the height of the clock hands */
+   
+  }
+
+  .hand {
+    width: 50%;
+    height: 6px;
+    background: black;
+    position: absolute;
+    top: 50%;
+    border-top-left-radius: 100%;
+    border-bottom-left-radius: 100%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  }
+  .hour-hand{
+    scale:0.7;
+  }
+  .min-hand{
+    scale:0.9;
+  }
+  .dot {
+    background-color: black;
+    width:0.8em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-inline: auto;
+    position: relative;
+    top:48%;
+  }
+  
+  .container{
+    background-color: lightsteelblue;
+    min-width:10em;
+    border-radius: 2em;
+    border:0.5em solid white;
+    box-shadow:
+      0 0 0 4px rgba(0,0,0,0.1),
+      inset 0 0 0 3px #EFEFEF,
+      inset 0 0 10px black,
+      0 0 10px rgba(0,0,0,0.2);
+    text-align: center;
+    cursor: pointer;
+    margin:auto;
+
+  }
+  h1{
+    font-size: 1.3em;
+  }
+  .container p {
+    font-size: 1.5em;;
+  }
+  
